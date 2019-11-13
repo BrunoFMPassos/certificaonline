@@ -242,7 +242,6 @@ public class CrudUsuario extends BasePage {
         return inserir;
     }
 
-
     private AjaxButton criarBtnFiltrar() {
         AjaxButton filtrar = new AjaxButton("filtrar", form) {
             @Override
