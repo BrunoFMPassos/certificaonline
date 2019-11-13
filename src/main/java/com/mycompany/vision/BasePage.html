@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/basepage.css">
+    <link rel="stylesheet" type="text/css" href="css/crud.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+    <title>Banco Unika</title>
+</head>
+<body>
+<wicket:link>
+    <div class="page-wrapper chiller-theme toggled">
+        <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+            <i class="fas fa-bars"></i>
+        </a>
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+                <div class="sidebar-brand">
+                    <a href="#">Certifica Online</a>
+                    <div id="close-sidebar">
+                        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                    </div>
+                </div>
+
+                <div class="sidebar-header">
+                </div>
+                <div class="user-info" style="padding: 20px; color: darkgrey; font-size: 12px;">
+                    <span class="user-name">Usuário:
+                        <strong wicket:id="usernome">nome</strong>
+                    </span><br/>
+                    <span class="user-name">Perfil:
+                        <strong wicket:id="userperfil">perfil</strong>
+                    </span><br/><br/>
+                    <a style="color: darkgrey;" wicket:id="logoutBtn">Logout</a>
+                    <br/>
+                </div>
+                <!-- sidebar-header  -->
+
+
+                <div class="sidebar-menu">
+                    <ul>
+                        <li>
+                            <a href="Dashboard.html">
+                                <i class="fa fa-tachometer-alt"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-dropdown" wicket:id="containerempresarial">
+                            <a href="#">
+                                <i class="fa fa-university" aria-hidden="true"></i>
+                                <span>Usuários</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="CrudUsuario.html">Controle de Usuários</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- sidebar-menu  -->
+                </div>
+                <!-- sidebar-content  -->
+                <div class="sidebar-footer">
+                </div>
+            </div>
+        </nav>
+        <!-- sidebar-wrapper  -->
+        <main class="page-content">
+            <div class="container-fluid">
+                <wicket:child/>
+            </div>
+        </main>
+        <!-- page-content" -->
+    </div>
+</wicket:link>
+<!-- page-wrapper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+<script src="js/jquery.mask.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script>
+    jQuery(function ($) {
+
+        $(".sidebar-dropdown > a").click(function () {
+            $(".sidebar-submenu").slideUp(200);
+            if (
+                $(this)
+                    .parent()
+                    .hasClass("active")
+            ) {
+                $(".sidebar-dropdown").removeClass("active");
+                $(this)
+                    .parent()
+                    .removeClass("active");
+            } else {
+                $(".sidebar-dropdown").removeClass("active");
+                $(this)
+                    .next(".sidebar-submenu")
+                    .slideDown(200);
+                $(this)
+                    .parent()
+                    .addClass("active");
+            }
+        });
+
+        $("#close-sidebar").click(function () {
+            $(".page-wrapper").removeClass("toggled");
+        });
+        $("#show-sidebar").click(function () {
+            $(".page-wrapper").addClass("toggled");
+        });
+
+
+    });
+</script>
+<script type="text/javascript" >
+
+    function limpa_formulário_cep() {
+        //Limpa valores do formulário de cep.
+        document.getElementById('cidade').value=("");
+        document.getElementById('estado').value=("");
+        document.getElementById('endereco').value=("");
+        document.getElementById('bairro').value=("");
+    }
+
+    function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('endereco').value=(conteudo.logradouro);
+            document.getElementById('bairro').value=(conteudo.bairro);
+            document.getElementById('cidade').value=(conteudo.localidade);
+            if(conteudo.uf == 'AL') {
+                document.getElementById('estado').value = (0);
+            }
+            if(conteudo.uf == 'AP') {
+                document.getElementById('estado').value = (1);
+            }
+            if(conteudo.uf == 'AM') {
+                document.getElementById('estado').value = (2);
+            }
+            if(conteudo.uf == 'BA') {
+                document.getElementById('estado').value = (3);
+            }
+            if(conteudo.uf == 'CE') {
+                document.getElementById('estado').value = (4);
+            }
+            if(conteudo.uf == 'DF') {
+                document.getElementById('estado').value = (5);
+            }
+            if(conteudo.uf == 'ES') {
+                document.getElementById('estado').value = (6);
+            }
+            if(conteudo.uf == 'GO') {
+                document.getElementById('estado').value = (7);
+            }
+            if(conteudo.uf == 'MA') {
+                document.getElementById('estado').value = (8);
+            }
+            if(conteudo.uf == 'MT') {
+                document.getElementById('estado').value = (9);
+            }
+            if(conteudo.uf == 'MS') {
+                document.getElementById('estado').value = (10);
+            }
+            if(conteudo.uf == 'MG') {
+                document.getElementById('estado').value = (11);
+            }
+            if(conteudo.uf == 'PA') {
+                document.getElementById('estado').value = (12);
+            }
+            if(conteudo.uf == 'PB') {
+                document.getElementById('estado').value = (13);
+            }
+            if(conteudo.uf == 'PR') {
+                document.getElementById('estado').value = (14);
+            }
+            if(conteudo.uf == 'PE') {
+                document.getElementById('estado').value = (15);
+            }
+            if(conteudo.uf == 'PI') {
+                document.getElementById('estado').value = (16);
+            }
+            if(conteudo.uf == 'RJ') {
+                document.getElementById('estado').value = (17);
+            }
+            if(conteudo.uf == 'RN') {
+                document.getElementById('estado').value = (18);
+            }
+            if(conteudo.uf == 'RS') {
+                document.getElementById('estado').value = (19);
+            }
+            if(conteudo.uf == 'RO') {
+                document.getElementById('estado').value = (20);
+            }
+            if(conteudo.uf == 'RR') {
+                document.getElementById('estado').value = (21);
+            }
+            if(conteudo.uf == 'SC') {
+                document.getElementById('estado').value = (22);
+            }
+            if(conteudo.uf == 'SP') {
+                document.getElementById('estado').value = (23);
+            }
+            if(conteudo.uf == 'SE') {
+                document.getElementById('estado').value = (24);
+            }
+            if(conteudo.uf == 'TO') {
+                document.getElementById('estado').value = (25);
+            }
+
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+        }
+    }
+
+    function pesquisacep(valor) {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = valor.replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                document.getElementById('endereco').value="...";
+                document.getElementById('bairro').value="...";
+                document.getElementById('cidade').value="...";
+                document.getElementById('estado').value="...";
+
+                //Cria um elemento javascript.
+                var script = document.createElement('script');
+
+                //Sincroniza com o callback.
+                script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+                //Insere script no documento e carrega o conteúdo.
+                document.body.appendChild(script);
+
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    };
+
+</script>
+</body>
+</html>
