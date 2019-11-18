@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="ISO-8859-1">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body onload="document.getElementById('alerta').style.display='none';">
+	<form id="formulariologin" wicket:id="formulariologin" onclick="document.getElementById('alerta').style.display='none';"
+		name="formulariologin">
+		<div id="1" class="col-sm-12"
+			style="width: 100vw; height: 100vh; background: lightgray; display: flex; flex-direction: row; justify-content: center; align-items: center;">
+			<div
+				style="background: white; width: 20%; min-width: 200px; min-height: 200px; max-heigth: 200px; padding: 10px; padding-top: 2%; border-radius: 5px;">
+					<div id="alerta" class="alert alert-danger" role="alert"
+						style="
+							position:absolute;
+							padding: 5px;
+							z-index:100;
+							top:10%;
+							opacity: 0.8;"
+					 wicket:id="message"></div>
+				<!--<div style="display: flex; justify-content: center; align-items: center;">
+					<img src="http://www.safewaretecnologia.com/lib/img/logo_head.png">
+				</div>-->
+				<div style="display: flex; justify-content: center; align-items: center;">
+					<h3>Certifica Online</h3>
+				</div>
+				<br />
+				<div
+					style="display: flex; justify-content: center; align-items: center;">
+					<input style="" class="form-control" id="textfieldu"
+						wicket:id="username" type="text" placeholder="Username:" />
+				</div>
+				<br />
+				<div
+					style="display: flex; justify-content: center; align-items: center;">
+					<input style="" class="form-control" id="textfieldp"
+						wicket:id="password" type="password" placeholder="Password:" />
+				</div>
+				<br />
+				<div
+					style="display: flex; justify-content: center; align-items: center;">
+					<button class="btn btn-primary" id="btnLogin" wicket:id="btnlogin"
+						type="submit" name="submit">Login</button>
+				</div>
+				<br />
+				<div
+					style="display: flex; justify-content: center; align-items: center;">
+					<a href="HomePage.html">Esqueceu sua senha?</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+</html>
