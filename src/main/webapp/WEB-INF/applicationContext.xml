@@ -33,42 +33,42 @@
 
         <property name="annotatedClasses">
             <list>
-                <value>com.mycompany.model.User</value>
-                <value>com.mycompany.model.Usuario</value>
+                <value>com.origamih.model.User</value>
+                <value>com.origamih.model.Usuario</value>
             </list>
         </property>
     </bean>
 
-    <bean id="userDao" class="com.mycompany.DAO.DaoUser">
+    <bean id="userDao" class="com.origamih.DAO.DaoUser">
         <property name="sessionFactory" ref="SessionFactory"/>
     </bean>
 
-    <bean id="usuarioDao" class="com.mycompany.DAO.DaoUsuario">
-        <property name="sessionFactory" ref="SessionFactory"/>
-    </bean>
-
-
-    <bean id="genericDao" class="com.mycompany.DAO.GenericDao">
+    <bean id="usuarioDao" class="com.origamih.DAO.DaoUsuario">
         <property name="sessionFactory" ref="SessionFactory"/>
     </bean>
 
 
-    <bean id="userService" class="com.mycompany.control.ServiceUser">
+    <bean id="genericDao" class="com.origamih.DAO.GenericDao">
+        <property name="sessionFactory" ref="SessionFactory"/>
+    </bean>
+
+
+    <bean id="userService" class="com.origamih.control.ServiceUser">
         <property name="userDao" ref="userDao"/>
         <property name="genericDao" ref="genericDao"/>
     </bean>
 
 
-    <bean id="usuarioService" class="com.mycompany.control.ServiceUsuario">
+    <bean id="usuarioService" class="com.origamih.control.ServiceUsuario">
         <property name="usuarioDao" ref="usuarioDao"/>
         <property name="genericDao" ref="genericDao"/>
     </bean>
 
-    <bean id="loginService" class="com.mycompany.control.ServiceLogin">
+    <bean id="loginService" class="com.origamih.control.ServiceLogin">
         <property name="serviceUser" ref="userService"/>
     </bean>
 
-    <bean id="perfilService" class="com.mycompany.control.ServicePerfil">
+    <bean id="perfilService" class="com.origamih.control.ServicePerfil">
     </bean>
 
 
